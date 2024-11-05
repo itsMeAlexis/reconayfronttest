@@ -1,0 +1,33 @@
+@charset "UTF-8";
+.table-contrato-admin td.status .icon.close {
+  color: #f00;
+}
+.table-contrato-admin td.status .icon.check {
+  color: #008000;
+}
+
+/* Contenedor para los campos de búsqueda */
+.search-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  /* Estilos para cada campo de búsqueda */
+}
+.search-container .search-input {
+  flex: 1;
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+}
+.search-container .search-input label {
+  margin-right: 10px;
+}
+.search-container .search-input input.wider-input {
+  width: 450px; /* O el ancho que desees */
+}
+
+/* Estilos para el botón de búsqueda */
+.ui.input .ui.button {
+  margin-left: 20px;
+}/*# sourceMappingURL=TableContratoAdmin.css.map */

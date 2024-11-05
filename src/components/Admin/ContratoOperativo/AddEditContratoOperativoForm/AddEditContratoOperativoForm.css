@@ -1,0 +1,78 @@
+@charset "UTF-8";
+.details-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.details-section1 {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-right: 5px; /* Espacio entre las secciones */
+  margin-bottom: 5px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.details-section2 {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-left: 1px; /* Espacio entre las secciones */
+  margin-bottom: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.details-section3 {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-right: 5px; /* Espacio entre las secciones */
+  margin-top: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.details-section4 {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-left: 1px; /* Espacio entre las secciones */
+  margin-top: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.details-section5 {
+  flex: 1;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-left: 0px; /* Espacio entre las secciones */
+  margin-top: 15px;
+}
+
+.details-section6 {
+  flex: 1;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-left: 0px; /* Espacio entre las secciones */
+  margin-top: 15px;
+}
+
+.add-edit-ContratoOperativo-form__active1 {
+  margin-bottom: 20px; /* Ajusta el valor según el espacio que desees entre los campos */
+}
+
+.custom-div {
+  border: none;
+  margin: 0;
+  padding: 0;
+  /* Agrega otros estilos según tus necesidades */
+}/*# sourceMappingURL=AddEditContratoOperativoForm.css.map */

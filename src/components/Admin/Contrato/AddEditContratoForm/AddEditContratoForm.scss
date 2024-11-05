@@ -1,0 +1,106 @@
+/*.add-edit-contrato-form{
+    .ui.image{
+        margin-top: 10px;
+    }
+    &__active{
+        display: flex;
+        align-items: center;
+        margin-top: 20px;
+        margin-bottom: 20px;
+
+        .ui.checkbox{
+            margin-right: 20px;
+        }
+    }
+    .ui.primary.button{
+        margin-top: 50px;
+    }
+    .dropdown.selection{
+        margin-top: 10px;
+        margin-bottom: 13px;
+    }
+}*/
+
+.details-container {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .details-section1 {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 5px; /* Espacio entre las secciones */
+    margin-bottom: 5px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .details-section2 {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-left: 1px; /* Espacio entre las secciones */
+    margin-bottom: 10px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .details-section3 {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 5px; /* Espacio entre las secciones */
+    margin-top: 10px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .details-section4 {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-left: 1px; /* Espacio entre las secciones */
+    margin-top: 10px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .details-section5 {
+    flex: 1;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-left: 0px;/* Espacio entre las secciones */
+    margin-top: 15px;
+  }
+
+  .details-section6 {
+    flex: 1;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-left: 0px;/* Espacio entre las secciones */
+    margin-top: 15px;
+  }
+
+  .add-edit-ContratoOperativo-form__active1 {
+    margin-bottom: 20px; /* Ajusta el valor según el espacio que desees entre los campos */
+  }
+
+  .custom-div {
+    border: none;
+    margin: 0;
+    padding: 0;
+    /* Agrega otros estilos según tus necesidades */
+  }
+
+  .boton-con-icono .icon {
+    size: 40px; /* Tamaño que desees para el icono */
+  }
+  
+  

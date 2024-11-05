@@ -1,0 +1,20 @@
+.table-users-admin{
+    td{
+        &.status{
+            .icon {
+                &.close{
+                   color: #f00; 
+                }
+                &.check{
+                    color: #008000;
+                }
+            }
+        }
+    }
+}
+
+
+.ui.pagination .item.disabled,
+.ui.pagination .icon.disabled {
+    display: inline-block; /* o display: initial; */
+}

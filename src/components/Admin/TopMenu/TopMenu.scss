@@ -1,0 +1,18 @@
+.top-menu-admin{
+    &__logo{
+        width: 250px;
+        background-color: #F6AF19 !important;
+        display: flex;
+        justify-content: center; /* Centra horizontalmente */
+        align-items: center; /* Centra verticalmente */
+    }
+
+    i.icon{
+        margin: 0 !important;
+    }
+
+    
+}
+.icon.sign-out {
+    color: #F6AF19;
+  }

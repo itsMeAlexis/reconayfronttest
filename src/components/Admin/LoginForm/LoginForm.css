@@ -1,0 +1,193 @@
+@charset "UTF-8";
+/* Estilos generales */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+.section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(to bottom, #e0967f, #efc6b9);
+}
+.section .color {
+  position: absolute;
+  filter: blur(150px);
+}
+.section .color:nth-child(1) {
+  top: -350px;
+  background: #ed7461;
+  width: 600px;
+  height: 500px;
+}
+.section .color:nth-child(2) {
+  bottom: 50px;
+  left: 0;
+  background: #f3c053;
+  width: 800px;
+  height: 300px;
+}
+.section .color:nth-child(3) {
+  bottom: 50px;
+  right: 0;
+  background: #f3c053;
+  width: 800px;
+  height: 300px;
+}
+.section .color:nth-child(4) {
+  bottom: 50px;
+  right: 0;
+  background: #eb6a42;
+  width: 300px;
+  height: 200px;
+}
+.section .todo {
+  position: relative;
+}
+.section .todo .cuadrado {
+  content: "";
+  position: absolute;
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 25px 45ps rgba(0, 0, 0, 0.1);
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+  background: rgba(228, 191, 8, 0.055);
+  animation: animate 10s linear infinite;
+  animation-delay: calc(-1s * var(--i));
+}
+.section .todo .cuadrado:nth-child(1) {
+  top: -50px;
+  right: -60px;
+  width: 150px;
+  height: 150px;
+}
+.section .todo .cuadrado:nth-child(2) {
+  top: 150px;
+  left: -100px;
+  width: 170px;
+  height: 170px;
+  z-index: 2;
+}
+.section .todo .cuadrado:nth-child(3) {
+  bottom: 50px;
+  right: -60px;
+  width: 120px;
+  height: 120px;
+  z-index: 2;
+}
+.section .todo .cuadrado:nth-child(4) {
+  bottom: -80px;
+  left: 100px;
+  width: 80px;
+  height: 80px;
+  z-index: 2;
+}
+.section .todo .cuadrado:nth-child(5) {
+  top: -80px;
+  left: 140px;
+  width: 100px;
+  height: 100px;
+  z-index: 2;
+}
+.section .todo .container {
+  position: relative;
+  width: 600px;
+  min-height: 600px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+}
+.section .todo .container .form {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 40px;
+  box-sizing: border-box;
+}
+.section .todo .container .form .logo {
+  text-align: center;
+  margin-bottom: 0px;
+}
+.section .todo .container .form .logo img {
+  max-width: 150px;
+  height: auto;
+}
+.section .todo .container .form .logo h2 {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  color: #fff;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin-bottom: 40px;
+}
+.section .todo .container .form .logo h2:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  width: 80px;
+  height: 4px;
+  background: #fff;
+  border-radius: 3px;
+  margin: auto;
+}
+.section .todo .container .form .login-form-admin .field input {
+  background: transparent;
+  border: none;
+  padding: 15px 20px;
+  border-radius: 20px;
+  background-color: rgba(231, 219, 219, 0.313);
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  outline: none;
+  font-size: 16px;
+  letter-spacing: 1px;
+  color: #151414;
+}
+.section .todo .container .form .login-form-admin .field input::-moz-placeholder {
+  /* Estilos para el placeholder */
+  color: #bfbcbc;
+}
+.section .todo .container .form .login-form-admin .field input::placeholder {
+  /* Estilos para el placeholder */
+  color: #bfbcbc;
+}
+.section .todo .container .form .login-form-admin .ui.button.primary {
+  margin-top: 20px;
+  background-color: #630518;
+  padding: 20px 20px;
+  color: #f3ecec;
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+/* Animación para los cuadrados */
+@keyframes animate {
+  0%, 100% {
+    transform: translateY(-40px);
+  }
+  50% {
+    transform: translateY(40px);
+  }
+}/*# sourceMappingURL=LoginForm.css.map */

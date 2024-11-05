@@ -1,0 +1,22 @@
+.btn-nuevo {
+    background-color: #ED7461;
+    color: #fff;
+  }
+  
+  .btn-cancelar {
+    background-color: #E32348;
+    color: #fff;
+  }
+
+  .button-content {
+    display: flex;
+    align-items: center;
+  }
+  
+  .icon {
+    margin-right: 5px; /* Ajusta el espaciado entre el icono y el texto */
+  }
+  
+  .button-text {
+    font-weight: bold;
+  }
