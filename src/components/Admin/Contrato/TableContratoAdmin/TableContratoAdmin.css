@@ -9,9 +9,13 @@
 /* Contenedor para los campos de búsqueda */
 .search-container {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
+  min-width: 200px;
   align-items: center;
+  padding-bottom: 20px;
   margin-bottom: 10px;
+  row-gap: 20px;
   /* Estilos para cada campo de búsqueda */
 }
 .search-container .search-input {

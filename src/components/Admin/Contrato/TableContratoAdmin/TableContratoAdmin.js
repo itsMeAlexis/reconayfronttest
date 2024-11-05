@@ -179,7 +179,7 @@ export function TableContratoAdmin(props) {
             </button>
           </div>
         </div>
-        {/* Busqueda por fecha "fechaOficio"
+        {/* Busqueda por fecha "fechaOficio" con dia, mes y año
         <div className="search-input">
           <label htmlFor="fechaOficioSearchInput">Fecha de Oficio:</label>
           <div className="ui action input">
@@ -197,7 +197,7 @@ export function TableContratoAdmin(props) {
             </button>
           </div>
         </div> */}
-        {/* Búsqueda por fecha "fechaOficio" */}
+        {/* Búsqueda por fecha "fechaOficio" con mes y año */}
         <div className="search-input">
           <label htmlFor="fechaOficioSearchInput">Fecha de Oficio (Mes y Año):</label>
           <div className="ui action input">
@@ -216,7 +216,7 @@ export function TableContratoAdmin(props) {
           </div>
         </div>
 
-        {/* Busqueda por fecha "fechaInicioContrato" */}
+        {/* Busqueda por fecha "fechaInicioContrato" por mes y año*/}
         <div className="search-input">
           <label htmlFor="fechaInicioSearchInput">Fecha de Inicio (Mes y Año):</label>
           <div className="ui action input">

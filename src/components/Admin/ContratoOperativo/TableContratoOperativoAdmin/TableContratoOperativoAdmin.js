@@ -36,6 +36,8 @@ export function TableContratoOperativoAdmin(props) {
   //console.log(auth);
 
   // Estado para el término de búsqueda
+  const [fechaOficioSearchTerm, setFechaOficioSearchTerm] = useState("");
+  const [fechaInicioSearchTerm, setFechaInicioSearchTerm] = useState("");
   const [nombrePdSSearchTerm, setnombrePdSSearchTerm] = useState("");
   const [nombreDependenciaSearchTerm, setNombreDependenciaSearchTerm] = useState("");
 
@@ -54,10 +56,31 @@ export function TableContratoOperativoAdmin(props) {
   }, []);
 
   // Filtrar los contratos según el término de búsqueda
-  const filteredContratoOperativos = filteredAndSortedContratoOperativos.filter((contrato) =>
-  contrato.nombrePdS.toLowerCase().includes(nombrePdSSearchTerm.toLowerCase()) &&
-  contrato.nombreSecretaria.toLowerCase().includes(nombreDependenciaSearchTerm.toLowerCase())
-);
+//   const filteredContratoOperativos = filteredAndSortedContratoOperativos.filter((contrato) =>
+//   contrato.nombrePdS.toLowerCase().includes(nombrePdSSearchTerm.toLowerCase()) &&
+//   contrato.nombreSecretaria.toLowerCase().includes(nombreDependenciaSearchTerm.toLowerCase())
+// );
+const filteredContratoOperativos = filteredAndSortedContratoOperativos.filter((contrato) => {
+  // Convertir fechaOficio a un objeto Date si existe y manejar nulos o indefinidos
+  const fechaOficio = contrato.fechaOficio ? new Date(contrato.fechaOficio) : null;
+  const mesAnioOficio = fechaOficio
+    ? `${fechaOficio.getFullYear()}-${String(fechaOficio.getMonth() + 1).padStart(2, '0')}`
+    : "";
+
+  // Convertir fechaInicioContrato a un objeto Date si existe y manejar nulos o indefinidos
+  const fechaInicioContrato = contrato.fechaInicioContrato ? new Date(contrato.fechaInicioContrato) : null;
+  const mesAnioInicioContrato = fechaInicioContrato
+    ? `${fechaInicioContrato.getFullYear()}-${String(fechaInicioContrato.getMonth() + 1).padStart(2, '0')}`
+    : "";
+  
+
+  return (
+    mesAnioInicioContrato.includes(fechaInicioSearchTerm) &&
+    mesAnioOficio.includes(fechaOficioSearchTerm) &&
+    (contrato.nombrePdS?.toLowerCase() || "").includes(nombrePdSSearchTerm.toLowerCase()) &&
+    (contrato.nombreSecretaria?.toLowerCase() || "").includes(nombreDependenciaSearchTerm.toLowerCase())
+  );
+});
 
 
 const downloadPDF_OperativoFIN = async (contratoOperativoId,nombrePdS) => {
@@ -127,6 +150,43 @@ const downloadPDF_OperativoFIN = async (contratoOperativoId,nombrePdS) => {
             />
             <button className="ui icon button">
                 <i className="search icon"></i>
+            </button>
+          </div>
+        </div>
+        {/* Búsqueda por fecha "fechaOficio" con mes y año */}
+        <div className="search-input">
+          <label htmlFor="fechaOficioSearchInput">Fecha de Oficio (Mes y Año):</label>
+          <div className="ui action input">
+            <input
+              id="fechaOficioSearchInput"
+              type="month" // Cambia el tipo a "month" para permitir la selección de mes y año
+              placeholder="Ingrese el mes y año de oficio..."
+              value={fechaOficioSearchTerm}
+              onChange={(event) => setFechaOficioSearchTerm(event.target.value)}
+              onKeyDown={handleSearchKeyDown} // Mantén la función para manejar Enter
+              className="wider-input" // Clase para el estilo personalizado
+            />
+            <button className="ui icon button"> {/* Asocia la búsqueda al botón */}
+              <i className="search icon"></i>
+            </button>
+          </div>
+        </div>
+
+        {/* Busqueda por fecha "fechaInicioContrato" por mes y año*/}
+        <div className="search-input">
+          <label htmlFor="fechaInicioSearchInput">Fecha de Inicio (Mes y Año):</label>
+          <div className="ui action input">
+            <input
+              id="fechaInicioSearchInput"
+              type="month" // Cambia el tipo a "month" para permitir la selección de mes y año
+              placeholder="Ingrese el mes y año de inicio de contrato..."
+              value={fechaInicioSearchTerm}
+              onChange={(event) => setFechaInicioSearchTerm(event.target.value)}
+              onKeyDown={handleSearchKeyDown} // Mantén la función para manejar Enter
+              className="wider-input" // Clase para el estilo personalizado
+            />
+            <button className="ui icon button"> {/* Asocia la búsqueda al botón */}
+              <i className="search icon"></i>
             </button>
           </div>
         </div>
