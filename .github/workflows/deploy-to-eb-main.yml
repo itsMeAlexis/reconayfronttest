@@ -1,0 +1,50 @@
+name: Deploy React App to AWS Elastic Beanstalk with Docker
+
+on:
+  push:
+    branches:
+      - main  # Asegúrate de cambiar esto a la rama que desees
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      # Configurar credenciales de AWS
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      # Login a Amazon ECR
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+
+      # Construir, etiquetar y subir la imagen a Amazon ECR
+      - name: Build, tag, and push image to Amazon ECR
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY: reconay # Cambia esto por el nombre de tu repositorio
+          IMAGE_TAG: latest  # Usar el SHA del commit como etiqueta de imagen.
+        run: |
+          docker build -t $ECR_REPOSITORY:$IMAGE_TAG .
+          docker tag $ECR_REPOSITORY:$IMAGE_TAG $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+
+      # Desplegar en AWS Elastic Beanstalk
+      - name: Deploy to AWS Elastic Beanstalk.
+        uses: einaregilsson/beanstalk-deploy@v18
+        with:
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          application_name: "reconay-frontend"
+          environment_name: "reconay-frontend-env3"  # Cambia esto por el nombre de tu entorno en Beanstalk
+          region: "us-east-1"
+          version_label: "v${{ github.run_number }}-${{ github.run_attempt }}"
+          deployment_package: Dockerrun.aws.json
+          use_existing_version_if_available: "true"
