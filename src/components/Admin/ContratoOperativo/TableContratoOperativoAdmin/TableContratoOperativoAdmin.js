@@ -11,6 +11,7 @@ import {useAuth} from "../../../../hooks";
 import { Link } from 'react-router-dom'; //link
 import { saveAs } from "file-saver";
 import numeral from 'numeral';
+import {BASE_API} from "../../../../utils/constants";
 
 export function TableContratoOperativoAdmin(props) {
   const {contratoOperativos, updateContratoOperativo, deleteContratoOperativo} = props;
@@ -85,7 +86,7 @@ const filteredContratoOperativos = filteredAndSortedContratoOperativos.filter((c
 
 const downloadPDF_OperativoFIN = async (contratoOperativoId,nombrePdS) => {
   try {
-    const url = `https://reconay-api.nayarit.gob.mx/api/generar_pdf_operativofin/${contratoOperativoId}/`;
+    const url = `${BASE_API}/api/generar_pdf_operativofin/${contratoOperativoId}/`;
     const response = await fetch(url);
     const blob = await response.blob();
     saveAs(blob, `${nombrePdS}_OP_FT.pdf`);
@@ -96,7 +97,7 @@ const downloadPDF_OperativoFIN = async (contratoOperativoId,nombrePdS) => {
    
   const downloadPDF_Operativo = async (contratoOperativoId,nombrePdS) => {
     try {
-      const url = `https://reconay-api.nayarit.gob.mx/api/generar_pdf_operativo/${contratoOperativoId}/`;
+      const url = `${BASE_API}/api/generar_pdf_operativo/${contratoOperativoId}/`;
       const response = await fetch(url);
       const blob = await response.blob();
       saveAs(blob, `${nombrePdS}_OP_FT.pdf`);
