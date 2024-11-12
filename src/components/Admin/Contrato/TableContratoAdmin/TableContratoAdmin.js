@@ -12,6 +12,7 @@ import "./TableContratoAdmin.css";
 import { useAuth } from "../../../../hooks";
 import { saveAs } from "file-saver";
 import numeral from "numeral";
+import {BASE_API} from "../../../../utils/constants";
 //import {} from "./"
 
 export function TableContratoAdmin(props) {
@@ -116,7 +117,7 @@ export function TableContratoAdmin(props) {
   const downloadPDFFIN = async (contratoId,nombrePrestador) => {
     try {
       //const url = `https://reconay-api.nayarit.gob.mx/api/generar_pdf_fin/${contratoId}/`;
-      const url = `http://:8000/api/generar_pdf_fin/${contratoId}/`;
+      const url = `${BASE_API}/api/generar_pdf_fin/${contratoId}/`;
       const response = await fetch(url);
       const blob = await response.blob();
       saveAs(blob, `${nombrePrestador}_Prof_FT.pdf`);
@@ -128,7 +129,7 @@ export function TableContratoAdmin(props) {
   const downloadPDF = async (contratoId, nombrePrestador) => {
     try {
       //const url = `https://reconay-api.nayarit.gob.mx/api/generar_pdf/${contratoId}/`;
-      const url = `http://localhost:8000/api/generar_pdf/${contratoId}/`;
+      const url = `${BASE_API}/api/generar_pdf/${contratoId}/`;
       const response = await fetch(url);
       const blob = await response.blob();
       saveAs(blob, `${nombrePrestador}_Prof_FT.pdf`);
