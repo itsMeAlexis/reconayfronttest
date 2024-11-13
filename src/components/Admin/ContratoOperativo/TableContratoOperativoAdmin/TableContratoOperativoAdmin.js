@@ -215,8 +215,8 @@ const downloadPDF_OperativoFIN = async (contratoOperativoId,nombrePdS) => {
           </div>
         </div> */}
 
-        {/* Búsqueda por semestre y año */}
-        <div className="search-input">
+        {/* Búsqueda por Ejercicio Fiscal */}
+        <div className="search-input" id="filtro-fiscal">
           <label htmlFor="semestreSearchInput">Ejercicio Fiscal:</label>
           <div className="ui action input">
             <select
@@ -244,7 +244,7 @@ const downloadPDF_OperativoFIN = async (contratoOperativoId,nombrePdS) => {
               }}
               className="ui dropdown"
             >
-              <option value="">Todo el año (semestre)</option>
+              <option value="">Seleccione un semestre (Todos los semestres)</option>
               <option value="1">1° Semestre</option>
               <option value="2">2° Semestre</option>
             </select>
