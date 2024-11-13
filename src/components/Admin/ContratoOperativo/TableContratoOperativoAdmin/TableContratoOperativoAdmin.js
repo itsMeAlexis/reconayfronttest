@@ -37,8 +37,11 @@ export function TableContratoOperativoAdmin(props) {
   //console.log(auth);
 
   // Estado para el término de búsqueda
-  const [fechaOficioSearchTerm, setFechaOficioSearchTerm] = useState("");
-  const [fechaInicioSearchTerm, setFechaInicioSearchTerm] = useState("");
+  //const [fechaOficioSearchTerm, setFechaOficioSearchTerm] = useState("");
+  const [mesSearchTerm, setMesSearchTerm] = useState("")
+  const [semestreSearchTerm, setSemestreSearchTerm] = useState("");
+  const [anioSearchTerm, setAnioSearchTerm] = useState("");
+  //const [fechaInicioSearchTerm, setFechaInicioSearchTerm] = useState("");
   const [nombrePdSSearchTerm, setnombrePdSSearchTerm] = useState("");
   const [nombreDependenciaSearchTerm, setNombreDependenciaSearchTerm] = useState("");
 
@@ -61,23 +64,62 @@ export function TableContratoOperativoAdmin(props) {
 //   contrato.nombrePdS.toLowerCase().includes(nombrePdSSearchTerm.toLowerCase()) &&
 //   contrato.nombreSecretaria.toLowerCase().includes(nombreDependenciaSearchTerm.toLowerCase())
 // );
+  // Definición de semestres
+  const semestre1 = ["01", "02", "03", "04", "05", "06"];
+  const semestre2 = ["07", "08", "09", "10", "11", "12"];
+
+  // Definición de meses
+  const meses = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"];
+  const mesesPrimerSemestre = ["01", "02", "03", "04", "05", "06"];
+  const mesesSegundoSemestre = ["07", "08", "09", "10", "11", "12"];
+
+  // Determinar los meses a mostrar según el semestre seleccionado
+  const obtenerMesesPorSemestre = () => {
+    if (semestreSearchTerm === "1") {
+      return mesesPrimerSemestre;
+    } else if (semestreSearchTerm === "2") {
+      return mesesSegundoSemestre;
+    } else {
+      return meses; // Si no hay semestre seleccionado, retorna todos los meses
+    }
+  };
+
+  const mesesDisponibles = obtenerMesesPorSemestre();
+
+
 const filteredContratoOperativos = filteredAndSortedContratoOperativos.filter((contrato) => {
   // Convertir fechaOficio a un objeto Date si existe y manejar nulos o indefinidos
-  const fechaOficio = contrato.fechaOficio ? new Date(contrato.fechaOficio) : null;
-  const mesAnioOficio = fechaOficio
-    ? `${fechaOficio.getFullYear()}-${String(fechaOficio.getMonth() + 1).padStart(2, '0')}`
-    : "";
+  //const fechaOficio = contrato.fechaOficio ? new Date(contrato.fechaOficio) : null;
+  // const mesAnioOficio = fechaOficio
+  //   ? `${fechaOficio.getFullYear()}-${String(fechaOficio.getMonth() + 1).padStart(2, '0')}`
+  //   : "";
 
-  // Convertir fechaInicioContrato a un objeto Date si existe y manejar nulos o indefinidos
-  const fechaInicioContrato = contrato.fechaInicioContrato ? new Date(contrato.fechaInicioContrato) : null;
-  const mesAnioInicioContrato = fechaInicioContrato
-    ? `${fechaInicioContrato.getFullYear()}-${String(fechaInicioContrato.getMonth() + 1).padStart(2, '0')}`
-    : "";
+  // Obtener fechaInicioContrato y dividirlo en anio y mes
+  const fechaInicioContrato = contrato.fechaInicioContrato ? contrato.fechaInicioContrato : null;
+  if (!fechaInicioContrato) return false;
+
+  // Dividir fecha en año y mes
+  const [anioInicioContrato, mesInicioContrato] = fechaInicioContrato.split('-');
   
+  // Formato mes-año para comparaciones
+  //const mesAnioInicioContrato = `${anioInicioContrato}-${mesInicioContrato}`;
+    
+  // Determinación del semestre
+  const isSemestre1 = semestre1.includes(mesInicioContrato);
+  const isSemestre2 = semestre2.includes(mesInicioContrato);
+
+
+  // Determinación del semestre
+  const semestre = isSemestre1 ? "1" : isSemestre2 ? "2" : "0"; // "0" si no es semestre 1 o 2
+  //  console.log(fechaInicioContrato , mesAnioInicioContrato);
+
 
   return (
-    mesAnioInicioContrato.includes(fechaInicioSearchTerm) &&
-    mesAnioOficio.includes(fechaOficioSearchTerm) &&
+    (mesInicioContrato === mesSearchTerm || mesSearchTerm === "") && // Permitir todos si no hay mes
+    (anioInicioContrato === anioSearchTerm || anioSearchTerm === "") && // Permitir todos si no hay año
+    (semestre === semestreSearchTerm || semestreSearchTerm === "") && // Permitir todos si semestreSearchTerm es "0"
+    // anioOficio.includes(anioSearchTerm) &&
+    //mesAnioOficio.includes(fechaOficioSearchTerm) &&
     (contrato.nombrePdS?.toLowerCase() || "").includes(nombrePdSSearchTerm.toLowerCase()) &&
     (contrato.nombreSecretaria?.toLowerCase() || "").includes(nombreDependenciaSearchTerm.toLowerCase())
   );
@@ -155,7 +197,7 @@ const downloadPDF_OperativoFIN = async (contratoOperativoId,nombrePdS) => {
           </div>
         </div>
         {/* Búsqueda por fecha "fechaOficio" con mes y año */}
-        <div className="search-input">
+        {/* <div className="search-input">
           <label htmlFor="fechaOficioSearchInput">Fecha de Oficio (Mes y Año):</label>
           <div className="ui action input">
             <input
@@ -167,14 +209,69 @@ const downloadPDF_OperativoFIN = async (contratoOperativoId,nombrePdS) => {
               onKeyDown={handleSearchKeyDown} // Mantén la función para manejar Enter
               className="wider-input" // Clase para el estilo personalizado
             />
-            <button className="ui icon button"> {/* Asocia la búsqueda al botón */}
+            <button className="ui icon button"> 
+              <i className="search icon"></i>
+            </button>
+          </div>
+        </div> */}
+
+        {/* Búsqueda por semestre y año */}
+        <div className="search-input">
+          <label htmlFor="semestreSearchInput">Ejercicio Fiscal:</label>
+          <div className="ui action input">
+            <select
+              id="anioSearchInput"
+              value={anioSearchTerm}
+              onChange={(event) => {
+                const selectedAnio = event.target.value;
+                setAnioSearchTerm(selectedAnio);
+              }}
+              className="ui dropdown"
+            >
+              <option value="">Selecciona un año(Todos los años)</option>
+              {Array.from({ length: 5 }).map((_, index) => (
+                <option key={index} value={new Date().getFullYear() + 1 - index}>
+                  {new Date().getFullYear() + 1 - index}
+                </option>
+              ))}
+            </select>
+            <select
+              id="semestreSearchInput"
+              value={semestreSearchTerm}
+              onChange={(event) => {
+                setSemestreSearchTerm(event.target.value);
+                setMesSearchTerm("");
+              }}
+              className="ui dropdown"
+            >
+              <option value="">Todo el año (semestre)</option>
+              <option value="1">1° Semestre</option>
+              <option value="2">2° Semestre</option>
+            </select>
+            <select
+              id="mesSearchInput"
+              value={mesSearchTerm}
+              onChange={(event) => setMesSearchTerm(event.target.value)}
+              className="ui dropdown"
+              disabled={mesesDisponibles.length === 0} // Deshabilitar si no hay meses disponibles
+            >
+              <option value="">Seleccione un mes (Todos los meses)</option>
+              {mesesDisponibles.map((mes) => (
+                <option key={mes} value={mes}>
+                  {mes}
+                </option>
+              ))}
+            </select>
+            <button className="ui icon button">
               <i className="search icon"></i>
             </button>
           </div>
         </div>
 
+
+
         {/* Busqueda por fecha "fechaInicioContrato" por mes y año*/}
-        <div className="search-input">
+        {/* <div className="search-input">
           <label htmlFor="fechaInicioSearchInput">Fecha de Inicio (Mes y Año):</label>
           <div className="ui action input">
             <input
@@ -186,11 +283,11 @@ const downloadPDF_OperativoFIN = async (contratoOperativoId,nombrePdS) => {
               onKeyDown={handleSearchKeyDown} // Mantén la función para manejar Enter
               className="wider-input" // Clase para el estilo personalizado
             />
-            <button className="ui icon button"> {/* Asocia la búsqueda al botón */}
+            <button className="ui icon button">
               <i className="search icon"></i>
             </button>
           </div>
-        </div>
+        </div>  */}
       </div>
         <Table className="tab-contratooperativo-admin">
           <Table.Header>
